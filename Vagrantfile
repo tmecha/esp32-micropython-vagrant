@@ -29,11 +29,15 @@ Vagrant.configure(2) do |config|
     wget https://dl.espressif.com/dl/xtensa-esp32-elf-linux64-1.22.0-61-gab8375a-5.2.0.tar.gz 2> /dev/null
     tar xvfz xtensa-esp32-elf-linux64-1.22.0-61-gab8375a-5.2.0.tar.gz
     echo "PATH=/home/vagrant/xtensa-esp32-elf/bin:\$PATH" >> ~/.profile
-    echo "Installing esp-open-sdk, Espressif ESP-IDF, and micropython source..."
-    git clone --recursive https://github.com/pfalcon/esp-open-sdk.git
+    echo "Installing Espressif ESP-IDF..."
     git clone --recursive https://github.com/espressif/esp-idf.git
-    git clone https://github.com/micropython/micropython.git
+    echo "Fetching https://github.com/open-eio/micropython-esp32..."
+    cd ~
+    mkdir open-eio
+    cd open-eio
+    git clone https://github.com/open-eio/micropython-esp32
     echo "Finished provisioning, now run 'vagrant ssh' to enter the virtual machine."
+    cd ~
   SHELL
 
   # Virtualbox VM configuration.
