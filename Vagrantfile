@@ -31,11 +31,19 @@ Vagrant.configure(2) do |config|
     echo "PATH=/home/vagrant/xtensa-esp32-elf/bin:\$PATH" >> ~/.profile
     echo "Installing Espressif ESP-IDF..."
     git clone --recursive https://github.com/espressif/esp-idf.git
+    cd esp-idf
+    git checkout c06cc31d85cc700e1dbddbe527d4282c4bc5845a
     echo "Fetching https://github.com/open-eio/micropython-esp32..."
     cd ~
     mkdir open-eio
     cd open-eio
     git clone https://github.com/open-eio/micropython-esp32
+    cd micropython-esp32
+    make -C mpy-cross
+    cd esp32
+    make
+    echo "Enabling USB serial permissions"
+    sudo adduser vagrant dialout
     echo "Finished provisioning, now run 'vagrant ssh' to enter the virtual machine."
     cd ~
   SHELL
