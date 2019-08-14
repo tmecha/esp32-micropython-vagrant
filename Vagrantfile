@@ -37,7 +37,7 @@ Vagrant.configure(2) do |config|
     cd ~
     mkdir open-eio
     cd open-eio
-    git clone https://github.com/open-eio/micropython-esp32
+    git clone --recursive https://github.com/open-eio/micropython-esp32
     cd micropython-esp32
     make -C mpy-cross
     cd esp32
